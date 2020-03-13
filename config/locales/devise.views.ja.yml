@@ -2,8 +2,12 @@ ja:
   activerecord:
     attributes:
       user:
-        fullname: "フルネーム(必須)"
-        username: "ユーザー名(必須)"
+        url: "URL"
+        introduce: "自己紹介"
+        phone: "TEL"
+        sex: "性別"
+        fullname: "フルネーム (必須)"
+        username: "ユーザー名 (必須)"
         current_password: "現在のパスワード"
         email: "メールアドレス"
         password: "パスワード"
