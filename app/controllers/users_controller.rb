@@ -4,10 +4,20 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(params[:id])
+    @user = current_user
   end
   
-  def edit 
+  def update
     @user = current_user
+    if params[:user][:password].empty?
+      @user.errors.add(:password,:blank)
+      render 'edit'
+    elsif @user.update_with_password(user_params)
+      flash[:success] = "パスワードを変更しました"
+      bypass_sign_in @user
+      redirect_to @user
+    else
+      render 'edit'
+    end
   end
 end
