@@ -38,7 +38,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -66,5 +66,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   def after_update_path_for(resoruce)
     users_path(resource)
+  end
+  
+  protected
+  
+  def update_resource(resource, params)
+    resource.update_without_password(params)
   end
 end
