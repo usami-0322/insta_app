@@ -1,5 +1,5 @@
-<div class="center jumbotron">
-    <h1>TRAVESTA</h1>
-    <h2>旅行記録アプリ</h2>
-    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-info"%>
-</div>
+<% if user_signed_in? %>
+  <%= render 'home/if' %>
+<% else %>
+  <%= render 'home/else' %>
+<% end %>

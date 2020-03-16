@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :current_user
+  
   
   def index
     @users = User.paginate(page: params[:page])
   end
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
   
   def update
@@ -23,4 +24,5 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+
 end
