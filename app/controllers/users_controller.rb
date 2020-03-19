@@ -4,10 +4,18 @@ class UsersController < ApplicationController
   def index
     @users = User.paginate(page: params[:page])
   end
+  
+  def new
+    @micropost = Micropost.new
+  end
 
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+  end
+  
+  def edit
+    @user = current_user
   end
   
   def update
@@ -32,9 +40,23 @@ class UsersController < ApplicationController
   end
   
   def followers
-    @title = "Followers"
+    @title = "Follower"
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
+  
+  def likes
+    @title = "Like"
+    @user = User.find(params[:id])
+    @microposts = @user.likes.pagenate(page: params[:page])
+    render 'show_like'
+  end
+
+
+    private
+    
+      def user_params
+        params.require(:user).permit(:password, :password_confirmation, :current_password)
+      end
 end

@@ -1,8 +1,13 @@
-<footer class="footer">
+<footer class="fixed-bottom">
+  <div class="container">
     <nav>
-        <ul>
-            <li><%= link_to "TRAVESTAについて", '/about' %></li>
-            <li><%= link_to "利用規約", '/policy' %></li>
-        </ul>
+      <ul>
+        <li><%= link_to "TRAVESTAについて", '/about' %></li>
+        <li><%= link_to "利用規約", '/policy' %></li>
+        <% if user_signed_in? %>
+          <li><%= link_to "旅投稿", new_micropost_path %></li>
+        <% end %>
+      </ul>
     </nav>
+  </div>
 </footer>

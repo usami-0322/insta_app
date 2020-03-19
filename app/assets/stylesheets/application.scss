@@ -254,7 +254,9 @@ input {
     margin-top: 5px;
   }
 }
-
+.introduce {
+  border: solid 1px #e8e8e8;
+}
 aside {
   textarea {
     height: 100px;
@@ -267,5 +269,18 @@ span.picture {
   input {
     border: 0;
   }
+}
+
+// likes
+
+.glyphicon-heart {
+  color: red;
+}
+.btn-default:hover > .glyphicon-heart-empty {
+  color: red;
+}
+.btn-default {
+  position: relative;
+  left: 60px;
 }
   
