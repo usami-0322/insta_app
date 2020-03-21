@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :update, :following, :followers]
+  before_action :authenticate_user!, only: [:index, :update, :edit,:destroy,
+                                            :following, :followers, :likes]
+  
   
   def index
     @users = User.paginate(page: params[:page])
@@ -33,14 +35,14 @@ class UsersController < ApplicationController
   end
   
   def following
-    @title = "Following"
+    @title = "フォロー"
     @user = User.find(params[:id])
     @users = @user.following.paginate(page: params[:page])
     render 'show_follow'
   end
   
   def followers
-    @title = "Follower"
+    @title = "フォロワー"
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
@@ -58,5 +60,10 @@ class UsersController < ApplicationController
     
       def user_params
         params.require(:user).permit(:password, :password_confirmation, :current_password)
+      end
+      
+      def correct_user
+        @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
       end
 end
