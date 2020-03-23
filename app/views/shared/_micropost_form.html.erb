@@ -1,19 +1,21 @@
-<%= form_with model: @micropost do |f| %>
+<%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+   <span class="picture">
+     写真投稿　(必須)
+    <%= f.file_field :picture, accept: 'image/jpeg,image/png' %>
+  </span>
   <div class="field">
     <%= f.text_area :content, placeholder: "どんな旅でしたか？" %>
   </div>
-  <%= f.submit "投稿", class: "btn btn-primary" %>
-  <span class="picture">
-  <%= f.file_field :picture, accept: 'image/jpeg,image/png' %>
-  </span>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+ 
 <% end %>
 
 <script type="text/javascript">
-  $('#micropost_picture').bind('change', function(){
+  $('#micropost_picture').bind('change', function() {
     var size_in_megabytes = this.files[0].size/1024/1024;
-    if (size_in_megabytes > 5) {
-      alart('Maximum file size is 5MB. Please choose a smaller file.');
+    if (size_in_megabytes > 1) {
+      alert('Maximum file size is 1MB. Please choose a smaller file.');
     }
-  })
+  });
 </script>

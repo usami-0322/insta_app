@@ -20,6 +20,7 @@ class HomeController < ApplicationController
   end
   
   private
+  
   def microposts_search_params
     params.require(:q).permit(:content_cont)
   end

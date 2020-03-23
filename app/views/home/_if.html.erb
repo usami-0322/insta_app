@@ -1,3 +1,4 @@
+<% if user_signed_in? %> 
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
@@ -7,23 +8,13 @@
       <%= render 'shared/stats' %>
     </section>
     <section class="micropost_form">
-      <%= render 'shared/micropost_form' %>
-    </section>
+        <%= render 'shared/micropost_form' %>
+      </section>
   </aside>
   
   <div class="col-md-8">
-    <h3>みんなの投稿</h3>
-    <%= search_form_for @q, url: @url do |f| %>
-    <div class="input-group">
-    <%= f.text_field :content_cont, placeholder: "Enter keyword...",
-                      class: 'form-control' %>
-    
-      <span class="input-group-btn">
-       <%= f.submit '検索', class: "btn btn-primary" %>
-       </span>
-    </div>
-    <% end %>
-    
+    <%= render 'shared/microposts_search_form' %>
     <%= render 'shared/feed' %>
   </div>  
   </div>
+<% end %>

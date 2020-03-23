@@ -6,6 +6,10 @@ class MicropostsController < ApplicationController
     @micropost = Micropost.new
   end
   
+  def new
+    @micropost=current_user.microposts.build
+  end 
+  
   def show
     @micropost = Micropost.find(params[:id])
     @comments = @micropost.comments
@@ -18,12 +22,14 @@ class MicropostsController < ApplicationController
       flash[:success] = "新しい投稿をしました"
       redirect_to root_url
     else
-      @feed_items = []
+      @q = Micropost.none.ransack
+      @feed_items = current_user.feed.paginate(page: params[:page])
       render 'home/top'
     end
   end
   
   def destroy
+    @micropost = Micropost.find(params[:id])
     @micropost.destroy
     flash[:succsess] = "投稿削除"
     redirect_to request.referrer || root_url
