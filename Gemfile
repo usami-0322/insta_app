@@ -33,6 +33,9 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
   gem 'factory_bot_rails', '~> 5.1'
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'pry-doc'
 end
 
 group :development do
