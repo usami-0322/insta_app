@@ -1,24 +1,9 @@
-<div class="comment-wrapper border-top　mb-10">
-  <p class="mt-5">コメント一覧</p>
-  <% @comments.each do |c| %>
-    <div>
-      <% unless c.user.blank? %>
-        <a href="<%= user_path(c.user_id) %>">
-          <%= gravatar_for @micropost.user %>
-        </a>
-      <% end %>
-      <%= c.user.username unless c.user.blank? %>
-      <br />
-      <%= c.content %>
-    </div>
-    <br />
-  <% end %>
+<div>
+  <h4>コメント</h4>
+  <div id="comments_area">
+    <%= render partial: 'comments/comment', locals: { comments: @comments } %>
+  </div>  
   <% if user_signed_in? %>
-    <%= form_with(model: [@micropost, @comment], local: true) do |f| %>
-      <%= f.text_area :content, class: "form-control", rows: 5 %>
-      <%= button_tag type: "submit", class: "btn btn-success float-right mt-1" do %>
-        <submit> コメントする</submit>
-      <% end %>
-    <% end %>
+    <%= render partial: 'comments/comment_form', locals: { comment: @comment, micropost: @micropost } %>
   <% end %>
-</div>
+ </div>

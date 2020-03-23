@@ -49,9 +49,9 @@ class UsersController < ApplicationController
   end
   
   def likes
-    @title = "Like"
+    @title = "いいね"
     @user = User.find(params[:id])
-    @microposts = @user.likes.pagenate(page: params[:page])
+    @microposts = @user.likes.paginate(page: params[:page])
     render 'show_like'
   end
 

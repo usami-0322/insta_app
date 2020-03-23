@@ -1,9 +1,10 @@
 <li id="micropost-<%= micropost.id %>">
-  <%= link_to gravatar_for(micropost.user, size: 50),micropost.user %>
+  <%= link_to gravatar_for(micropost.user, size: 20),micropost.user %>
   <span class="user"><%= link_to micropost.user.username, micropost.user %></span>
   <span class="content" data-toggle="modal" data-target="#image-modal" style="cursor:pointer">
     <%= image_tag micropost.picture.url %>
   </span>
+  
   <div class="modal fade" id="image-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-middle" role="document">
       <div class="modal-content">
@@ -32,11 +33,18 @@
          data: { confirm: "本当に削除しますか?" } %>
      <% end %>
   </span>
-   <span class="like" id="like_form_<%= micropost.id %>">
+  <span class="like" id="like_form_<%= micropost.id %>">
     <% if micropost.liked_by.include?(current_user) %>
-      <%= render "microposts/unlike", micropost: micropost %>
+      <%= render 'microposts/unlike', micropost: micropost %>
     <% else %>
-      <%= render "microposts/like", micropost: micropost %>
+      <%= render 'microposts/like', micropost: micropost %>
     <% end %>
   </span>
+  <span id="comment-<%= micropost.id %>">
+    <%= render 'comments/comment', micropost: micropost %>
+  </span>
+  <span id="comment-<%= micropost.id %>">
+    <%= render 'comments/comment_form', micropost: micropost %>
+  </span>
 </li>
+

@@ -7,13 +7,13 @@ class MicropostsController < ApplicationController
   end
   
   def new
-    @micropost=current_user.microposts.build
+    @micropost = current_user.microposts.build
   end 
   
   def show
     @micropost = Micropost.find(params[:id])
     @comments = @micropost.comments
-    @comment = @micropost.comments.build(user_id: current_user.id) if current_user
+    @comment = @micropost.comments.new(user_id: current_user.id) if current_user
   end
 
   def create
@@ -45,5 +45,4 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.find_by(id: params[:id])
     redirect_to root_url if @micropost.nil?
   end
-  
 end

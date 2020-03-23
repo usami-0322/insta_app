@@ -130,6 +130,13 @@ aside {
     }
   }
 }
+
+.action-list {
+  display:flex;
+  flex-direction: row; 
+  justify-content: space-around; 
+}
+
 // sidebar
 .gravatar {
   float: left;

@@ -19,8 +19,9 @@ Rails.application.routes.draw do
       get :following, :followers, :likes
     end
   end
-  
-  resources :microposts,         only: [:new, :index, :show, :create, :destroy] 
+  resources :microposts,         only: [:new, :index, :show, :create, :destroy]  do
+    resources :comments,         only: [:create]
+  end
   resources :comments,           only: [:create, :destroy]
   resources :relationships,      only: [:create, :destroy]
   resources :relationship_likes, only: [:create, :destroy]
