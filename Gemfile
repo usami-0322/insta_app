@@ -22,7 +22,7 @@ gem 'rails-i18n', '~> 5.1'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'ransack'
-
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'rspec-rails'
