@@ -1,14 +1,13 @@
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-   <span class="picture">
-     写真投稿　(必須)
-    <%= f.file_field :picture, accept: 'image/jpeg,image/png' %>
-  </span>
+    <span class="picture">
+      写真投稿　(必須)
+      <%= f.file_field :picture, accept: 'image/jpeg,image/png' %>
+    </span>
   <div class="field">
     <%= f.text_area :content, placeholder: "どんな旅でしたか？" %>
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
- 
 <% end %>
 
 <script type="text/javascript">
