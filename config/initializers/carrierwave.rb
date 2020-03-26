@@ -9,8 +9,8 @@ CarrierWave.configure do |config|
     config.fog_directory  = 'proj-image-store'
     config.fog_credentials = {
       provider: 'AWS',
-      aws_access_key_id: ENV['AKIAWH4TCL6IVTTGQPVI'],
-      aws_secret_access_key: ENV['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'],
+      aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
       region: ENV['ap-northeast-1'],
       path_style: true
     }
