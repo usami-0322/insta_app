@@ -1,0 +1,10 @@
+<div class="abstract">
+  <%= link_to gravatar_for(current_user, size: 50), current_user %>
+  <h1><%= current_user.username %></h1>
+</div>
+<div class="introduce">
+  <p><%= current_user.introduce %></p>
+</div>
+<span><%= current_user.url %></span>
+<span><%= link_to "プロフィール", current_user %></span>
+<span><%= pluralize(current_user.microposts.count, "投稿") %></span>

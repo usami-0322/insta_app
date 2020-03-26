@@ -1,0 +1,50 @@
+user<li id="micropost-<%= micropost.id %>">
+  <%= link_to gravatar_for(micropost.user, size: 20),micropost.user %>
+  <span class="user"><%= link_to micropost.user.username, micropost.user %></span>
+  <span class="content" data-toggle="modal" data-target="#image-modal" style="cursor:pointer">
+    <%= image_tag micropost.picture.url %>
+  </span>
+  
+  <div class="modal fade" id="image-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-middle" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <%= image_tag micropost.picture.url %>
+          <span class="timestamp">
+          <%= time_ago_in_words(micropost.created_at) %>前
+          <% if current_user?(micropost.user) %>
+            <%= link_to "削除", micropost, method: :delete,
+               data: { confirm: "本当に削除しますか?" } %>
+          <% end %>
+          </span>
+        </div>
+        <div class="modal-img_footer">
+        <p><%= micropost.content %></p>
+       <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+      </div>
+   </div>
+    </div>
+  </div>
+
+  <span class="timestamp">
+    <%= time_ago_in_words(micropost.created_at) %>前
+    <% if current_user?(micropost.user) %>
+      <%= link_to "削除", micropost, method: :delete,
+         data: { confirm: "本当に削除しますか?" } %>
+    <% end %>
+  </span>
+  <span class="like" id="like_form_<%= micropost.id %>">
+    <% if micropost.liked_by.include?(current_user) %>
+      <%= render 'microposts/unlike', micropost: micropost %>
+    <% else %>
+      <%= render 'microposts/like', micropost: micropost %>
+    <% end %>
+  </span>
+  <span id="comment-<%= micropost.id %>">
+    <%= render 'comments/comment', micropost: micropost %>
+  </span>
+  <span id="comment-<%= micropost.id %>">
+    <%= render 'comments/comment_form', micropost: micropost %>
+  </span>
+</li>
+

@@ -21,3 +21,11 @@
 /yarn-error.log
 
 .byebug_history
+
+# Ignore Spring files.
+/spring/*.pid
+
+# dotenv
+.env
+
+/public/uploads

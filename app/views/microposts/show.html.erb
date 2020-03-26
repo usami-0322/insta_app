@@ -1,0 +1,9 @@
+<div>
+  <h4>コメント</h4>
+  <div id="comments_area">
+    <%= render partial: 'comments/comment', locals: { comments: @comments } %>
+  </div>  
+  <% if user_signed_in? %>
+    <%= render partial: 'comments/comment_form', locals: { comment: @comment, micropost: @micropost } %>
+  <% end %>
+ </div>
